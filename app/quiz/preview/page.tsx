@@ -131,7 +131,7 @@ export default function PreviewPage() {
                     <Progress className="rotate-180 h-1.5 md:h-2" fraction={progressData.fraction} reverse indicatorColor={progressData.color} />
                     <div className="text-xs md:text-sm text-slate-600">Осталось: <span className="font-medium" style={{ color: progressData.color }}>{progressData.left} c.</span></div>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                  {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
                     {state.question.options.map((o: any) => (
                       <button
                         key={o._id}
@@ -146,7 +146,7 @@ export default function PreviewPage() {
                         <div className="font-medium text-sm md:text-base">{o.text}</div>
                       </button>
                     ))}
-                  </div>
+                  </div> */}
                 </div>
               )}
               {state.status === "finished" && (
