@@ -274,7 +274,8 @@ export default function ChatHistoryPage() {
         
       </div>
       <div className="absolute bottom-6 right-10 flex items-end flex-col gap-2">
-          <img src="/7.png" alt="QR" className="w-40 aspect-square" />
+          <img src="/7.png" alt="QR" className="w-72 aspect-square" />
+          <p className="text-2xl font-semibold text-[#18bbac]">drsarha-conf.vercel.app</p>
           <p className="text-sm font-semibold text-[#18bbac]">Задай мне вопрос!</p>
         </div>
     </div>
