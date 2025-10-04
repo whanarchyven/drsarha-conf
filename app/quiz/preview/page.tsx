@@ -58,6 +58,23 @@ export default function PreviewPage() {
     return { value, color, left, fraction };
   }, [state, localTick]);
 
+  // Scale typography based on content length (title + description)
+  const titleClass = useMemo(() => {
+    const len = (state?.question?.title?.length ?? 0) + (state?.question?.description?.length ?? 0);
+    if (len <= 80) return "text-xl md:text-3xl";
+    if (len <= 160) return "text-lg md:text-2xl";
+    if (len <= 280) return "text-base md:text-xl";
+    return "text-sm md:text-lg";
+  }, [state?.question?.title, state?.question?.description]);
+
+  const descClass = useMemo(() => {
+    const len = (state?.question?.title?.length ?? 0) + (state?.question?.description?.length ?? 0);
+    if (len <= 200) return "text-base md:text-lg";
+    if (len <= 400) return "text-sm md:text-base";
+    if (len <= 800) return "text-xs md:text-sm";
+    return "text-[10px] md:text-xs";
+  }, [state?.question?.title, state?.question?.description]);
+
   return (
     <div className="min-h-screen flex items-center justify-center ">
       <div className="relative w-[768px] h-[1152px] rounded-2xl border shadow overflow-hidden bg-white">
@@ -119,13 +136,13 @@ export default function PreviewPage() {
               {state.status === "question" && state.question && (
                 <div className="space-y-4 md:space-y-5 rounded-xl border p-4 md:p-6 bg-white">
                   {state.question.imageUrl && (
-                    <div className="w-full h-40 md:h-64 overflow-hidden rounded-xl bg-white flex items-center justify-center">
+                    <div className="w-full h-40 md:h-80 overflow-hidden rounded-xl bg-white flex items-center justify-center">
                       <img src={state.question.imageUrl} alt="" className="max-h-full max-w-full object-contain" />
                     </div>
                   )}
                   <div className="space-y-1">
-                    <h2 className="text-lg md:text-2xl font-semibold">{state.question.title}</h2>
-                    <p className="text-slate-600 text-sm md:text-base">{state.question.description}</p>
+                    <h2 className={`${titleClass} font-semibold`}>{state.question.title}</h2>
+                    <p className={`text-slate-600 ${descClass}`}>{state.question.description}</p>
                   </div>
                   <div className="space-y-2">
                     <Progress className="rotate-180 h-1.5 md:h-2" fraction={progressData.fraction} reverse indicatorColor={progressData.color} />
