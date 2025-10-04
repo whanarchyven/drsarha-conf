@@ -157,7 +157,7 @@ export default function ChatHistoryPage() {
 
         {/* Dialogs pinned to top with reserved bottom space for Sarah */}
         <div ref={outerScrollRef} className="absolute left-0 right-0 top-0 p-6 pt-8 flex flex-col overflow-y-scroll items-center justify-start" style={{ bottom: "380px" }}>
-          <div className="w-full max-w-3xl rounded-2xl border bg-white/95 backdrop-blur p-4 shadow-sm">
+          <div className="w-full max-w-4xl rounded-2xl border bg-white/95 backdrop-blur p-4 shadow-sm">
             <div ref={scrollRef} className="space-y-5 overflow-auto pr-2" style={{ maxHeight: "100%" }}>
               {rows.map((x: any) => (
                 <div key={String(x._id)} className="space-y-3">
@@ -273,7 +273,7 @@ export default function ChatHistoryPage() {
         )}
         
       </div>
-      <div className="absolute bottom-6 right-6 flex items-end flex-col gap-2">
+      <div className="absolute bottom-6 right-10 flex items-end flex-col gap-2">
           <img src="/7.png" alt="QR" className="w-40 aspect-square" />
           <p className="text-sm font-semibold text-[#18bbac]">Задай мне вопрос!</p>
         </div>
