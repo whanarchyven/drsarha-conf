@@ -75,6 +75,20 @@ export default function PreviewPage() {
     return "text-[10px] md:text-xs";
   }, [state?.question?.title, state?.question?.description]);
 
+  // Helpers for scaling correct answers list
+  function getAnswerQuestionClass(len: number): string {
+    if (len <= 60) return "text-sm md:text-base";
+    if (len <= 120) return "text-xs md:text-sm";
+    if (len <= 220) return "text-[11px] md:text-xs";
+    return "text-[10px] md:text-[11px]";
+  }
+  function getAnswerTextClass(len: number): string {
+    if (len <= 100) return "text-sm md:text-base";
+    if (len <= 200) return "text-xs md:text-sm";
+    if (len <= 400) return "text-[11px] md:text-xs";
+    return "text-[10px] md:text-[11px]";
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center ">
       <div className="relative w-[768px] h-[1152px] rounded-2xl border shadow overflow-hidden bg-white">
@@ -227,6 +241,19 @@ function TopTen({ sessionId }: { sessionId: string }) {
   );
 }
 
+function getAnswerQuestionClass(len: number): string {
+  if (len <= 60) return "text-sm md:text-base";
+  if (len <= 120) return "text-xs md:text-sm";
+  if (len <= 220) return "text-[11px] md:text-xs";
+  return "text-[10px] md:text-[11px]";
+}
+function getAnswerTextClass(len: number): string {
+  if (len <= 100) return "text-sm md:text-base";
+  if (len <= 200) return "text-xs md:text-sm";
+  if (len <= 400) return "text-[11px] md:text-xs";
+  return "text-[10px] md:text-[11px]";
+}
+
 function CorrectAnswers() {
   const state = useQuery(api.quiz.getActiveQuizState);
   const items = state?.answers ?? [];
@@ -235,12 +262,16 @@ function CorrectAnswers() {
     <div className="rounded-xl border p-4 md:p-6 bg-white">
       <p className="text-base md:text-lg font-semibold mb-2">Правильные ответы</p>
       <div className="grid grid-cols-1 gap-2">
-        {items.map((it, idx) => (
-          <div key={idx} className="rounded-md border p-3 text-left">
-            <div className="text-sm font-semibold mb-1">{it.question}</div>
-            <div className="text-sm text-[#18bbac]">{it.answers.join(", ") || "—"}</div>
-          </div>
-        ))}
+        {items.map((it, idx) => {
+          const qLen = (it.question?.length ?? 0);
+          const aLen = (it.answers?.join(", ")?.length ?? 0);
+          return (
+            <div key={idx} className="rounded-md border p-3 text-left">
+              <div className={`${getAnswerQuestionClass(qLen)} font-semibold mb-1`}>{it.question}</div>
+              <div className={`${getAnswerTextClass(aLen)} text-[#18bbac]`}>{it.answers.join(", ") || "—"}</div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
