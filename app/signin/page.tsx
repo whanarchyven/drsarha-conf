@@ -15,7 +15,7 @@ export default function SignIn() {
   return (
     <div className="flex flex-col md:flex-row-reverse items-center min-h-screen overflow-hidden md:overflow-visible">
       <div className="hidden md:flex w-1/2 items-center self-end justify-center items-end bg-white">
-        <img src="/hello_sara_login.png" alt="Mascot" className="max-w-[480px] w-full h-auto" />
+        <img src="/hello_sara_login2.PNG" alt="Mascot" className="max-w-[480px] w-full h-auto" />
       </div>
       <div className="flex-1 flex flex-col gap-8 max-w-md mx-auto w-full h-full justify-center items-center p-8 pb-4 md:pb-8">
         <h1 className="text-2xl font-bold">{flow === "signIn" ? "Вход" : "Регистрация"}</h1>
@@ -125,7 +125,7 @@ export default function SignIn() {
       {/* Мобильный маскот: под формой, всегда обрезается экраном снизу */}
       <div className="md:hidden w-54 mt-auto overflow-hidden">
         <img
-          src={flow === "signIn" ? "/hello_sara_login.png" : "/hello_sara.png"}
+          src={flow === "signIn" ? "/hello_sara_login2.PNG" : "/hello_sara.png"}
           alt="Mascot"
           className="w-full object-bottom"
         />

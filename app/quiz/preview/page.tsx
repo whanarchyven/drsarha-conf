@@ -91,7 +91,7 @@ export default function PreviewPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center ">
-      <div className="relative w-[768px] h-[1152px] rounded-2xl border shadow overflow-hidden bg-white">
+      <div className="relative w-[1100px] h-[1152px] rounded-2xl border shadow overflow-hidden bg-white">
         {/* Sarah bottom-left */}
         <SarahVideo
           state={videoState}
